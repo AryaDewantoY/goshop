@@ -10,8 +10,7 @@ func (routes *Server) initializeRoutes() {
 	routes.Router = mux.NewRouter()
 	routes.Router.HandleFunc("/", routes.Home).Methods("GET")
 	routes.Router.HandleFunc("/Products", routes.Products).Methods("GET")
-
-
+	routes.Router.HandleFunc("/products/{slug}", routes.GetProductBySlug).Methods("GET")
 
 	staticFileDirectory := http.Dir("./assets/")
 	staticFileHandler := http.StripPrefix("/public/", http.FileServer(staticFileDirectory))
